@@ -8,16 +8,20 @@ import animal.Duck;
 
 public class FabrikaForAnimals {
 
+    private String type;
     private String name;
     private int age;
     private int weight;
     private String color;
 
-    public FabrikaForAnimals(String name, int age, int weight, String color) {
-        this.name = name;
-        this.age = age;
-        this.weight = weight;
+
+    public FabrikaForAnimals( String color, String name, int weight, String type, int age){
+
         this.color = color;
+        this.name = name;
+        this.weight = weight;
+        this.type = type;
+        this.age = age;
     }
 
     public Animal createAnimal (ChooseTypeAnimals chooseTypeAnimals){
@@ -25,12 +29,12 @@ public class FabrikaForAnimals {
 
         switch (chooseTypeAnimals){
             case DOG:
-                return new Dog(name,age,weight,color);
+                return new Dog(color,name,weight,type,age);
             case CAT:
-                return new Cat(name,age,weight,color);
+                return new Cat(color,name,weight,type,age);
 
             case DUCK:
-                return new Duck(name,age,weight,color);
+                return new Duck(color,name,weight,type,age);
 
         }
 

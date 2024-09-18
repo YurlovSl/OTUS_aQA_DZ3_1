@@ -1,13 +1,11 @@
 package tables;
 
 import db.MySQLConnect;
-import objects.Animal;
+import animal.Animal;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AnimalTable extends AbsTable {
     private static final String NAME = "animals";

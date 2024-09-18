@@ -75,7 +75,7 @@ public  class Animal {
 
     @Override
     public String toString() {
-        String s = "Привет! меня зовут " + name + ", мне " + age + " " + countAge(getAge()) + ", я вешу - " + weight + " кг, мой цвет - " + color;
+        String s = "Привет! я, " + type + " меня зовут " + name + ", мне " + age + " " + countAge(getAge()) + ", я вешу - " + weight + " кг, мой цвет - " + color;
         return s;
     }
 
@@ -96,6 +96,13 @@ public  class Animal {
         this.years = years;
         this.type = type;
     }
+    public Animal(String type,String name, int age, int weight, String color) {
+        this.type = type;
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+        this.color = color;
+    }
 
     public Animal(String name, int age, int weight, String color, String years, String type) {
         this.name = name;
@@ -104,6 +111,23 @@ public  class Animal {
         this.color = color;
         this.years = years;
         this.type = type;
+    }
+  //  id,color,name,weight,type,age
+    public Animal( String color, String name, int weight, String type, int age){
+
+        this.color = color;
+        this.name = name;
+        this.weight = weight;
+        this.type = type;
+        this.age = age;
+    }
+    public Animal(int id, String color, String name, int weight, String type, int age) {
+        this.id = id;
+        this.color = color;
+        this.name = name;
+        this.weight = weight;
+        this.type = type;
+        this.age = age;
     }
 
     public String countAge(int age) {

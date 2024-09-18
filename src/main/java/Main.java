@@ -68,8 +68,12 @@ public class Main {
                             System.out.println("Введите цвет");
                             String color = validationLine.validateLine(line);
 
-                            Animal animal = new FabrikaForAnimals(name, age, weight, color).createAnimal(ChooseTypeAnimals.valueOf(typeAnimal));
+                            Animal animal = new FabrikaForAnimals(color,name, weight, typeAnimal, age).createAnimal(ChooseTypeAnimals.valueOf(typeAnimal));
+                            System.out.println(animal.getClass());
                             animals.add(animal);
+                            animalTable.write(animal);
+
+
                             System.out.println(animal.say());
                             break;
                         }
@@ -83,6 +87,7 @@ public class Main {
                     } else {
                         for (Animal an : animals)
                             System.out.println(an.toString());
+
                     }
                     break;
 

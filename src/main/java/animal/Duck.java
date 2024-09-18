@@ -2,8 +2,8 @@ package animal;
 
 
 public class Duck extends Animal implements Flying {
-    public Duck(String name, int age, int weight, String color) {
-        super(name, age, weight, color);
+    public Duck( String color, String name, int weight, String type, int age) {
+        super( color, name, weight, type, age);
     }
 
     @Override
