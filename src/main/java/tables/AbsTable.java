@@ -35,7 +35,7 @@ public abstract class AbsTable implements ITable{
     }
 
     // Метод для проверки существования таблицы
-    private boolean isTableExists() {
+    public boolean isTableExists() {
         String query = String.format("SHOW TABLES LIKE '%s';", this.tableName);
         try (ResultSet rs = dbConnector.executeQuery(query)) {
             return rs.next();

@@ -6,12 +6,14 @@ import tables.AnimalTable;
 import utils.ValidationLine;
 import utils.ValidationNumber;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         ArrayList<Animal> animals = new ArrayList<>();
         ChooseActions chooseActions;
@@ -19,6 +21,7 @@ public class Main {
         ValidationLine validationLine = new ValidationLine();
 
         AnimalTable animalTable = new AnimalTable();
+
 
         List<String> columnsAnimalTable = new ArrayList<>();
         columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
@@ -81,12 +84,14 @@ public class Main {
                     break;
 
                 case LIST:
-                    if (animals.size() == 0) {
+                    if (animalTable.isTableExists() == false) {
                         System.out.println("На данный момент список пуст");
                         continue;
                     } else {
-                        for (Animal an : animals)
-                            System.out.println(an.toString());
+//                        for (Animal an : animals)
+//                            System.out.println(an.toString());
+                        ResultSet resultSet = animalTable.selectAll();
+                        animalTable.print(resultSet);
 
                     }
                     break;
