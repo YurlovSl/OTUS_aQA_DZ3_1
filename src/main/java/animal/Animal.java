@@ -1,6 +1,11 @@
 package animal;
 
 
+
+import utils.ValidationLine;
+import utils.ValidationNumber;
+
+
 public  class Animal {
     private String name;
     private int id;
@@ -9,6 +14,11 @@ public  class Animal {
     private String color;
     private String years;
     private String type;
+   // private Scanner scanner = new Scanner(System.in);
+    private ValidationNumber validationNumber = new ValidationNumber();
+    private ValidationLine validationLine = new ValidationLine();
+
+
 
     public String getType() {
         return type;
@@ -77,6 +87,9 @@ public  class Animal {
     public String toString() {
         String s = "Привет! я, " + type + " меня зовут " + name + ", мне " + age + " " + countAge(getAge()) + ", я вешу - " + weight + " кг, мой цвет - " + color;
         return s;
+    }
+
+    public Animal() {
     }
 
     public Animal(String name, int age, int weight, String color) {
@@ -148,4 +161,6 @@ public  class Animal {
         }
         return years;
     }
+
+
 }

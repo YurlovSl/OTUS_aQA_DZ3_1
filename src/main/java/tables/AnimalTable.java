@@ -68,7 +68,16 @@ public class AnimalTable extends AbsTable {
         return dbConnector.executeQuery(String.format("SELECT * FROM  %s where ;", NAME));
     }
 
-    public void updateAnimal(){
+    public void updateAnimal(Animal animal){
+        this.dbConnector.execute(String.format(
+                "update %s set type='%s', name='%s', age=%d, weight=%d, color='%s' where id=%d;",
+                NAME,
+                animal.getType(),
+                animal.getName(),
+                animal.getAge(),
+                animal.getWeight(),
+                animal.getColor(),
+                animal.getId()));
 
     }
 

@@ -3,6 +3,7 @@ import data.ChooseActions;
 import data.ChooseTypeAnimals;
 import fabrika.FabrikaForAnimals;
 import tables.AnimalTable;
+import utils.Help;
 import utils.ValidationLine;
 import utils.ValidationNumber;
 
@@ -13,25 +14,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) throws SQLException {
 
         ArrayList<Animal> animals = new ArrayList<>();
         ChooseActions chooseActions;
-        ValidationNumber validationNumber = new ValidationNumber();
-        ValidationLine validationLine = new ValidationLine();
-
         AnimalTable animalTable = new AnimalTable();
-
-
-
-//        List<String> columnsAnimalTable = new ArrayList<>();
-//        columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
-//        columnsAnimalTable.add("color VARCHAR(20)");
-//        columnsAnimalTable.add("name VARCHAR(20)");
-//        columnsAnimalTable.add("weight INT");
-//        columnsAnimalTable.add("type VARCHAR(20)");
-//        columnsAnimalTable.add("age INT");
-//        animalTable.create(columnsAnimalTable);
+        Help help = new Help();
 
         List<String> columnsAnimalTable = new ArrayList<>();
         columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
@@ -47,7 +36,7 @@ public class Main {
             for (ChooseActions chooseActions1 : ChooseActions.values()) {
                 actionForEnum.add(chooseActions1.name().toUpperCase());
             }
-            System.out.println("Введите введите команду: " + String.join("/", actionForEnum));                      // Вывод команд через Enum
+            System.out.println("Введите введите команду: \n" + String.join(" | ", actionForEnum));                      // Вывод команд через Enum
             Scanner scanner = new Scanner(System.in);
             String line = scanner.nextLine().toUpperCase().trim();
             try {
@@ -58,38 +47,18 @@ public class Main {
             }
             switch (chooseActions) {
                 case ADD:
-                    ArrayList<String> animalsForEnum = new ArrayList<>();
-                    for (ChooseTypeAnimals chooseTypeAnimals1 : ChooseTypeAnimals.values()) {
-                        animalsForEnum.add(chooseTypeAnimals1.name().toUpperCase());
-                    }
-                    while (true) {
-                        System.out.println("Введите название животного: " + String.join("/", animalsForEnum));          // Вывод животных через Enum
-                        String typeAnimal = scanner.nextLine().toUpperCase().trim();
+                    Animal animal = help.createUpdateAnimals();
+                    animals.add(animal);
+                    animalTable.write(animal);
+                    System.out.println(animal.say());
+                    break;
 
-                        if (!animalsForEnum.contains(typeAnimal)) {                                                             // Сравнение строки с элементами массива, полученных из Enum
-                            System.out.println("Такого животного нет, повторите попытку еще раз");
-                        } else {
-                            System.out.println("Введите имя");
-                            String name = validationLine.validateLine(line);
-
-                            System.out.println("Введите возраст");
-                            int age = validationNumber.validateNumber(line);
-
-                            System.out.println("Введите вес");
-                            int weight = validationNumber.validateNumber(line);
-
-                            System.out.println("Введите цвет");
-                            String color = validationLine.validateLine(line);
-
-                            Animal animal = new FabrikaForAnimals(typeAnimal,name,age,weight,color).createAnimal(ChooseTypeAnimals.valueOf(typeAnimal));
-                            animals.add(animal);
-                            animalTable.write(animal);
-
-
-                            System.out.println(animal.say());
-                            break;
-                        }
-                    }
+                case UPDATE:
+                    System.out.println("Введите id");
+                    int id = scanner.nextInt();
+                    Animal newAnimal = help.createUpdateAnimals();
+                    newAnimal.setId(id);
+                    animalTable.updateAnimal(newAnimal);
                     break;
 
                 case LIST:
@@ -102,10 +71,12 @@ public class Main {
                         animalTable.print(resultSet);
 
                         animals = animalTable.read();
-                        System.out.println(animals);
+                        //System.out.println(animals);
                     }
                     break;
-
+                case DELETE:
+                    animalTable.delete();
+                    break;
                 case EXIT:
                     scanner.close();
                     System.out.println("Выход");
@@ -115,4 +86,5 @@ public class Main {
         }
 
     }
+
 }

@@ -1,5 +1,9 @@
 package data;
 
 public enum ChooseActions {
-    ADD, LIST, EXIT
+    ADD,
+    UPDATE,
+    LIST,
+    DELETE,
+    EXIT
 }
