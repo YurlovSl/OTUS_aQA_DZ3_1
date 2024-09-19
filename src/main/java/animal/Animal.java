@@ -100,8 +100,9 @@ public  class Animal {
         this.type = type;
         this.name = name;
         this.age = age;
-        this.weight = weight;
         this.color = color;
+        this.weight = weight;
+
     }
 
     public Animal(String name, int age, int weight, String color, String years, String type) {

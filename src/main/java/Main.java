@@ -23,13 +23,23 @@ public class Main {
         AnimalTable animalTable = new AnimalTable();
 
 
+
+//        List<String> columnsAnimalTable = new ArrayList<>();
+//        columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
+//        columnsAnimalTable.add("color VARCHAR(20)");
+//        columnsAnimalTable.add("name VARCHAR(20)");
+//        columnsAnimalTable.add("weight INT");
+//        columnsAnimalTable.add("type VARCHAR(20)");
+//        columnsAnimalTable.add("age INT");
+//        animalTable.create(columnsAnimalTable);
+
         List<String> columnsAnimalTable = new ArrayList<>();
         columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
-        columnsAnimalTable.add("color VARCHAR(20)");
-        columnsAnimalTable.add("name VARCHAR(20)");
-        columnsAnimalTable.add("weight INT");
         columnsAnimalTable.add("type VARCHAR(20)");
+        columnsAnimalTable.add("name VARCHAR(20)");
         columnsAnimalTable.add("age INT");
+        columnsAnimalTable.add("weight INT");
+        columnsAnimalTable.add("color VARCHAR(20)");
         animalTable.create(columnsAnimalTable);
 
         while (true) {
@@ -71,8 +81,7 @@ public class Main {
                             System.out.println("Введите цвет");
                             String color = validationLine.validateLine(line);
 
-                            Animal animal = new FabrikaForAnimals(color,name, weight, typeAnimal, age).createAnimal(ChooseTypeAnimals.valueOf(typeAnimal));
-                            System.out.println(animal.getClass());
+                            Animal animal = new FabrikaForAnimals(typeAnimal,name,age,weight,color).createAnimal(ChooseTypeAnimals.valueOf(typeAnimal));
                             animals.add(animal);
                             animalTable.write(animal);
 

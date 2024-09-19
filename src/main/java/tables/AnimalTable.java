@@ -15,24 +15,31 @@ public class AnimalTable extends AbsTable {
     }
 
     public void write(Animal animal){
-        this.dbConnector.execute(String.format("INSERT INTO %s (id,color,name,weight,type,age) " +
-                "VALUES('%s','%s','%s','%s','%s','%s')",NAME,animal.getId(),
-                animal.getColor(),animal.getName(),animal.getWeight(),animal.getType(),animal.getAge()));
+//        this.dbConnector.execute(String.format("INSERT INTO %s (id,color,name,weight,type,age) " +
+//                "VALUES('%s','%s','%s','%s','%s','%s')",NAME,animal.getId(),
+//                animal.getColor(),animal.getName(),animal.getWeight(),animal.getType(),animal.getAge()));
+        this.dbConnector.execute(String.format("INSERT INTO %s (id,type,name,age,color,weight) " +
+                        "VALUES('%s','%s','%s','%s','%s','%s')",NAME,animal.getId(),
+                animal.getType(),animal.getName(),animal.getAge(),animal.getColor(),animal.getWeight()));
     }
 
     public void print(ResultSet rs) throws SQLException {
         //Вывод заголовка на экран
-        System.out.printf("%-10s %-20s %-10s %-5s %-10s %-5s%n", "Color", "Name", "Weight", "ID", "Type", "Age");
+        System.out.printf("%-5s %-5s %-20s %-10s %-10s %-5s%n", "ID", "Type", "Name", "Age", "Weight", "Color");
         System.out.println("-----------------------------------------------------------");
 
         while(rs.next()){
-            System.out.printf("%-10s %-20s %-10s %-5d %-10s %-5d%n",
-                    rs.getString("color"),
-                    rs.getString("name"),
-                    rs.getString("weight"),
+            System.out.printf("%-5d %-5s %-20s %-10d %-10s %-5s%n",
                     rs.getInt("id"),
                     rs.getString("type"),
-                    rs.getInt("age"));
+                    rs.getString("name"),
+                    rs.getInt("age"),
+                    rs.getString("weight"),
+                    rs.getString("color"));
+
+
+
+
         }
     }
 

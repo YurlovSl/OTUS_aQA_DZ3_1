@@ -15,7 +15,7 @@ public class FabrikaForAnimals {
     private String color;
 
 
-    public FabrikaForAnimals( String color, String name, int weight, String type, int age){
+    public FabrikaForAnimals(String type,String name, int age, int weight, String color){
 
         this.color = color;
         this.name = name;
@@ -29,12 +29,12 @@ public class FabrikaForAnimals {
 
         switch (chooseTypeAnimals){
             case DOG:
-                return new Dog(color,name,weight,type,age);
+                return new Dog(type,name,age,weight,color);
             case CAT:
-                return new Cat(color,name,weight,type,age);
+                return new Cat(type,name,age,weight,color);
 
             case DUCK:
-                return new Duck(color,name,weight,type,age);
+                return new Duck(type,name,age,weight,color);
 
         }
 
