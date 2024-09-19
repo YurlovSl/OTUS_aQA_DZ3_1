@@ -97,11 +97,12 @@ public class Main {
                         System.out.println("На данный момент список пуст");
                         continue;
                     } else {
-//                        for (Animal an : animals)
-//                            System.out.println(an.toString());
+//
                         ResultSet resultSet = animalTable.selectAll();
                         animalTable.print(resultSet);
 
+                        animals = animalTable.read();
+                        System.out.println(animals);
                     }
                     break;
 

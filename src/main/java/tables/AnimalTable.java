@@ -58,10 +58,18 @@ public class AnimalTable extends AbsTable {
             int age = resultSet.getInt("age");
 
             Animal animals = new Animal(id,color,name,weight,type,age);
-            animals.getAge();
             animal.add(animals);
         }
         return animal;
+    }
+
+
+    public ResultSet selectWithFilter() {                                                       // Фильтрация
+        return dbConnector.executeQuery(String.format("SELECT * FROM  %s where ;", NAME));
+    }
+
+    public void updateAnimal(){
+
     }
 
 }
