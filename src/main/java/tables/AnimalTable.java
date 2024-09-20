@@ -1,7 +1,9 @@
 package tables;
 
+import data.ChooseTypeAnimals;
 import db.MySQLConnect;
 import animal.Animal;
+import utils.Help;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +17,6 @@ public class AnimalTable extends AbsTable {
     }
 
     public void write(Animal animal){
-//        this.dbConnector.execute(String.format("INSERT INTO %s (id,color,name,weight,type,age) " +
-//                "VALUES('%s','%s','%s','%s','%s','%s')",NAME,animal.getId(),
-//                animal.getColor(),animal.getName(),animal.getWeight(),animal.getType(),animal.getAge()));
         this.dbConnector.execute(String.format("INSERT INTO %s (id,type,name,age,color,weight) " +
                         "VALUES('%s','%s','%s','%s','%s','%s')",NAME,animal.getId(),
                 animal.getType(),animal.getName(),animal.getAge(),animal.getColor(),animal.getWeight()));
@@ -36,10 +35,6 @@ public class AnimalTable extends AbsTable {
                     rs.getInt("age"),
                     rs.getString("weight"),
                     rs.getString("color"));
-
-
-
-
         }
     }
 
@@ -64,8 +59,8 @@ public class AnimalTable extends AbsTable {
     }
 
 
-    public ResultSet selectWithFilter() {                                                       // Фильтрация
-        return dbConnector.executeQuery(String.format("SELECT * FROM  %s where ;", NAME));
+    public ResultSet selectWithFilter(ChooseTypeAnimals chooseTypeAnimals) {                                                       // Фильтрация
+        return dbConnector.executeQuery(String.format("SELECT * FROM  %s where type='%s';", NAME, chooseTypeAnimals));
     }
 
     public void updateAnimal(Animal animal){
@@ -78,7 +73,5 @@ public class AnimalTable extends AbsTable {
                 animal.getWeight(),
                 animal.getColor(),
                 animal.getId()));
-
     }
-
 }

@@ -5,6 +5,7 @@ import data.ChooseTypeAnimals;
 import fabrika.FabrikaForAnimals;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Help {
@@ -45,5 +46,16 @@ public class Help {
         String color = validationLine.validateLine();
 
         return new FabrikaForAnimals(typeAnimal,name,age,weight,color).createAnimal(ChooseTypeAnimals.valueOf(typeAnimal));
+    }
+
+    public List<String> addTitleForTable(){
+        List<String> columnsAnimalTable = new ArrayList<>();
+        columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
+        columnsAnimalTable.add("type VARCHAR(20)");
+        columnsAnimalTable.add("name VARCHAR(20)");
+        columnsAnimalTable.add("age INT");
+        columnsAnimalTable.add("weight INT");
+        columnsAnimalTable.add("color VARCHAR(20)");
+        return columnsAnimalTable;
     }
 }

@@ -22,14 +22,7 @@ public class Main {
         AnimalTable animalTable = new AnimalTable();
         Help help = new Help();
 
-        List<String> columnsAnimalTable = new ArrayList<>();
-        columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
-        columnsAnimalTable.add("type VARCHAR(20)");
-        columnsAnimalTable.add("name VARCHAR(20)");
-        columnsAnimalTable.add("age INT");
-        columnsAnimalTable.add("weight INT");
-        columnsAnimalTable.add("color VARCHAR(20)");
-        animalTable.create(columnsAnimalTable);
+        animalTable.create(help.addTitleForTable());
 
         while (true) {
             ArrayList<String> actionForEnum = new ArrayList<>();
@@ -54,7 +47,7 @@ public class Main {
                     break;
 
                 case UPDATE:
-                    System.out.println("Введите id");
+                    System.out.println("Введите id животного");
                     int id = scanner.nextInt();
                     Animal newAnimal = help.createUpdateAnimals();
                     newAnimal.setId(id);
@@ -66,16 +59,40 @@ public class Main {
                         System.out.println("На данный момент список пуст");
                         continue;
                     } else {
-//
-                        ResultSet resultSet = animalTable.selectAll();
-                        animalTable.print(resultSet);
+                        System.out.println("Введите цифру 1 или 2.\n1 для вывода всего списка,\n2 для вывода списка по фильтру:");
+                        int option = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (option) {
+                            case 1:
+                                ResultSet resultSet = animalTable.selectAll();
+                                animalTable.print(resultSet);
+                                break;
+                            case 2:
+                                boolean rightType = false;
+                                String typeAnimal;
+                                ArrayList<String> animalsForEnum = new ArrayList<>();
+                                for (ChooseTypeAnimals chooseTypeAnimals1 : ChooseTypeAnimals.values()) {
+                                    animalsForEnum.add(chooseTypeAnimals1.name().toUpperCase());
+                                }
+                                do {
+                                    System.out.println("Введите название животного: " + String.join("/", animalsForEnum));          // Вывод животных через Enum
+                                    typeAnimal = scanner.nextLine().toUpperCase().trim();
+                                    if (animalsForEnum.contains(typeAnimal)) {
+                                        rightType = true;
+                                    } else {
+                                        System.out.println("Такого животного нет, повторите попытку еще раз");
+                                    }
+                                } while (!rightType);
 
-                        animals = animalTable.read();
-                        //System.out.println(animals);
+                                ResultSet resultSetWithFilter = animalTable.selectWithFilter(ChooseTypeAnimals.valueOf(typeAnimal));
+                                animalTable.print(resultSetWithFilter);
+                                break;
+                        }
                     }
                     break;
-                case DELETE:
-                    animalTable.delete();
+
+                case CLEAR:
+                    animalTable.clear();
                     break;
                 case EXIT:
                     scanner.close();

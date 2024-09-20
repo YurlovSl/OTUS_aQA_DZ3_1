@@ -4,6 +4,6 @@ public enum ChooseActions {
     ADD,
     UPDATE,
     LIST,
-    DELETE,
+    CLEAR,
     EXIT
 }
