@@ -58,4 +58,5 @@ public class Help {
         columnsAnimalTable.add("color VARCHAR(20)");
         return columnsAnimalTable;
     }
+
 }
