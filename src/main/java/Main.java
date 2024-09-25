@@ -55,7 +55,7 @@ public class Main {
                     break;
 
                 case LIST:
-                    if (animalTable.isTableExists() == false) {
+                    if (!animalTable.isTableExists()) {
                         System.out.println("На данный момент список пуст");
                         continue;
                     } else {

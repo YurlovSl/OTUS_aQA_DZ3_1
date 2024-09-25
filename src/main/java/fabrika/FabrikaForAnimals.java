@@ -25,7 +25,7 @@ public class FabrikaForAnimals {
     }
 
     public Animal createAnimal (ChooseTypeAnimals chooseTypeAnimals){
-        //Animal animal = null;
+
 
         switch (chooseTypeAnimals){
             case DOG:

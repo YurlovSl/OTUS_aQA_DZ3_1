@@ -6,7 +6,7 @@ import utils.ValidationLine;
 import utils.ValidationNumber;
 
 
-public  class Animal {
+public abstract class Animal {
     private String name;
     private int id;
     private int age;
@@ -14,7 +14,6 @@ public  class Animal {
     private String color;
     private String years;
     private String type;
-   // private Scanner scanner = new Scanner(System.in);
     private ValidationNumber validationNumber = new ValidationNumber();
     private ValidationLine validationLine = new ValidationLine();
 
